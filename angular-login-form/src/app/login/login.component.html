@@ -1,0 +1,29 @@
+<h1 style="text-align:center">
+Angular Login Sample
+</h1>
+<div class="login">
+    <h2 class="login-header">Log in</h2>
+    <form [formGroup]="loginForm" class="login-container" (ngSubmit)="login()">
+        <p [ngClass]="{'has-error': isSubmitted && formControls.name.errors}">
+            <input type="name" placeholder="Name" formControlName="name">
+        </p>
+        
+            <p *ngIf="name.invalid && !name.pristine">Name is required</p>
+        
+        <p [ngClass]="{'has-error': isSubmitted && formControls.email.errors}">
+            <input type="email" placeholder="Email" formControlName="email">
+        </p>
+        <div *ngIf="email.invalid && !email.pristine">
+            <p *ngIf="email.errors.email" class="is-size-6 has-text-danger">Valid email is required.</p>
+        </div>
+        <p [ngClass]="{'has-error': isSubmitted && formControls.password.errors}">
+            <input type="password" placeholder="Password" formControlName="password">
+        </p>
+        <div *ngIf="password.invalid && !password.pristine">
+                <p *ngIf="password.errors.minlength" class="is-size-6 has-text-danger">Password should be at least 6 characters.</p>
+              </div>
+        <p>
+            <input type="submit" value="Log in" [disabled]="!loginForm.valid">
+        </p>
+    </form>
+</div>
